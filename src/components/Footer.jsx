@@ -8,10 +8,10 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 const Footer = () => {
   return (
     <AppBar position="static" color="primary" sx={{ marginTop: 'auto' }}>
-      <Container>
+      <Container sx={{color:'black'}}>
         <Toolbar>
           <Typography variant="body1" color="inherit" sx={{ flexGrow: 1 }}>
-            Harsha Udayanga
+          Harsha Udayanga
           </Typography>
           <IconButton color="inherit" href="https://github.com/herath98" target="_blank" rel="noopener noreferrer">
             <GitHubIcon />
@@ -29,7 +29,13 @@ const Footer = () => {
             <TwitterIcon />
           </IconButton>
         </Toolbar>
+        <Toolbar sx={{ justifyContent: 'center', color: 'black' }}>
+          <Typography variant="body1" color="inherit">
+            Copyright 2023 Portfolio | All Rights Reserved.
+          </Typography>
+        </Toolbar>
       </Container>
+
     </AppBar>
   );
 };
