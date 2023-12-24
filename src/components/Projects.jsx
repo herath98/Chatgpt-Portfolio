@@ -6,7 +6,7 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/system';
 import cal from './images/s6.png';
 import shop from './images/s7.png';
-import helth from './images/ss.png';
+import helth from './images/Ss.png';
 import fl from './images/s2.png';
 import hl from './images/s4.png';
 import li from './images/s5.png';
