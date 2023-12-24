@@ -6,14 +6,20 @@ import Grid from '@mui/material/Grid';
 import { styled } from '@mui/system';
 import cal from './images/s6.png';
 import shop from './images/s7.png';
-// import helth from './images/s1.png';
+import helth from './images/ss.png';
 import fl from './images/s2.png';
 import hl from './images/s4.png';
 import li from './images/s5.png';
 import po from './images/s9.png';
 
 const projectsData = [
- 
+  {
+    id: 1,
+    type: 'backend',
+    name: 'Helthmat-predict pro',
+    image: helth,
+    tools: ['Django', 'PostgreSQL', 'REST API', 'Jquery', 'Machine Lerning', 'Bootstrap', 'HTML&CSS'],
+  },
   {
     id: 2,
     type: 'backend',
