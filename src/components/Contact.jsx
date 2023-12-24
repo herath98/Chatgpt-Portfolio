@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
@@ -30,8 +30,6 @@ const SectionBox = styled(Box)({
     boxShadow: 'none',
   },
 });
-
-
 
 const ContactPaper = styled(Paper)({
   marginBottom: '30px',
@@ -107,12 +105,28 @@ const Contact = () => {
     return Object.keys(errors).length === 0;
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
 
     if (validateForm()) {
-      console.log('Form submitted!', formData);
-      // Additional logic for form submission
+      try {
+        const response = await fetch("https://formspree.io/f/moqgarlq", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        if (response.ok) {
+          console.log("Form submitted successfully!");
+          // Additional logic for form submission
+        } else {
+          console.error("Form submission failed:", response.status);
+        }
+      } catch (error) {
+        console.error("Error submitting form:", error);
+      }
     } else {
       console.log('Form validation failed');
     }
@@ -132,7 +146,7 @@ const Contact = () => {
       </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
-        <SectionBox>
+          <SectionBox>
             <ContactDetails data-aos="slide-right">
               <Grid container spacing={2} alignItems="center">
                 <Grid item>
@@ -181,12 +195,13 @@ const Contact = () => {
           <SectionBox>
             <ContactForm
               id="contact-form"
-              action="https://formspree.io/f/xbjnryga"
+              action="https://formspree.io/f/moqgarlq"
               method="POST"
               onSubmit={submitForm}
             >
               <TextField
                 type="text"
+                id="name"  // Add this line
                 name="name"
                 label="Name"
                 variant="outlined"
@@ -194,10 +209,12 @@ const Contact = () => {
                 onChange={handleInputChange}
                 fullWidth
                 margin="normal"
+                autoComplete="name"  // Add this line
               />
               {formErrors.name && <ErrorMessage>{formErrors.name}</ErrorMessage>}
               <TextField
                 type="email"
+                id="email"  // Add this line
                 name="email"
                 label="E-mail"
                 variant="outlined"
@@ -205,20 +222,24 @@ const Contact = () => {
                 onChange={handleInputChange}
                 fullWidth
                 margin="normal"
+                autoComplete="email"  // Add this line
               />
               {formErrors.email && <ErrorMessage>{formErrors.email}</ErrorMessage>}
               <TextField
                 type="tel"
+                id="phone"  // Add this line
                 name="phone"
                 label="Mobile No."
                 variant="outlined"
                 onChange={handleInputChange}
                 fullWidth
                 margin="normal"
+                autoComplete="tel"  // Add this line
               />
               {formErrors.phone && <ErrorMessage>{formErrors.phone}</ErrorMessage>}
               <TextField
                 name="message"
+                id="message"  // Add this line
                 label="Message"
                 multiline
                 rows={5}
@@ -227,6 +248,7 @@ const Contact = () => {
                 onChange={handleInputChange}
                 fullWidth
                 margin="normal"
+                autoComplete="off"  // Add this line, or use a more specific value based on your requirements
               />
               {formErrors.message && <ErrorMessage>{formErrors.message}</ErrorMessage>}
               <ContactButton
